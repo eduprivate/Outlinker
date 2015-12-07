@@ -1,0 +1,23 @@
+- Problema 3:
+
+Para o problema 3 criei um OutlinkExtractor. Para a leitura do conteúdo html estou usando o JSoup um parser html em java. Ótima
+api, boa documentação. Criei um HtmlParser que extrai os links das páginas visitadas e verifica se esta é do mesmo site que 
+esta sendo 'crawleado'. A Net não esta me ajudando essa semana então estou deixando 30s para timeout. Maldita Net! Ao final da
+iteração o conteúdo é persistido em disco. 
+Não estou fazendo normalização de urls, isso reduziria muitos requests desnecessários para urls de mesmo conteúdo. Por exemplo:
+http://uol.com.br/noticias?session=92838, http://uol.com.br/noticias/? e http://uol.com.br/noticias poderiam ser tratadas como
+uma única url.
+Obs.: Nos trabalhos clássicos (Sergey Brin and Lawrence Page, Carlos Castillo, por exemplo ) sobre webcrawler falam sobre 
+realizar o DNS lookup (ou DNS resolving) para reduzir o tempo de fetch das páginas. Nunca testei essa abordagem mas me parece 
+interessante e poderia ser utilizado neste tipo de trabalho.
+ 
+### Altere os paths para seus cenários!
+- Requisitos:
+JRE - Java 7
+# Usada: Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
+
+- Build:
+$ mvn clean package install
+$ cd targed
+
+$ java -cp nmonitor-extractor-jar-with-dependencies.jar  br.com.edu.nmonitor.runner.URLExtractor -url http://g1.com.br -depth 1 -filePath /Users/cadu/indexer/urls.txt
